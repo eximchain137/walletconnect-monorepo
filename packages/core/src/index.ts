@@ -751,6 +751,10 @@ class Connector {
       this.peerMeta = payload.params[0].peerMeta
 
       this._exchangeKey()
+
+      let internalPayload = payload
+      internalPayload.method = 'session_request'
+      this._triggerEvents(internalPayload)
     })
 
     this.on('wc_sessionUpdate', (error, payload) => {
